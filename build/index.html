@@ -5,15 +5,21 @@
     <title></title>
     <script src="./bundle.js"></script>
   </head>
-  <body>
+  <body  ng-controller="MainController as self">
     {{district}}
     <form name="searchDistrict">
-      <input type="search" name="name" ng-model="district">
-      <input type="submit" value="Search">
+      <input type="search" placeholder="semt yaziniz" name="name" ng-model="district">
+      <input type="submit" value="Search" ng-click="search()">
     </form>
-    <div ng-controller="MainController as self">
-      {{self.city}}
+    <div>
+      {{self.district}}
     </div>
+    <div class="pharmacies">
+      {{self.pharmacies}}
+    </div>
+    <ui-gmap-google-map center='self.map.center' zoom='self.map.zoom'>
+        hana
+    </ui-gmap-google-map>
 
   </body>
 </html>
