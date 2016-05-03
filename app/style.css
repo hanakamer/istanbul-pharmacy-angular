@@ -1,1 +1,9 @@
-.angular-google-map-container { height: 400px; }
+.angular-google-map-container, .angular-google-map {
+  height: 400px;
+  width: 600px;
+  float: left;
+}
+.pharmacies {
+  float: right;
+  width: 50%;
+}

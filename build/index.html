@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="weatherApp">
+<html ng-app="pharmApp">
   <head>
-    <meta charset="utf-8">
+     <meta charset="utf-8">
     <title></title>
     <script src="./bundle.js"></script>
   </head>
@@ -14,13 +14,20 @@
     <div>
       {{self.district}}
     </div>
-    <div class="pharmacies">
-      {{self.pharmacies}}
-    </div>
     <ui-gmap-google-map center='self.map.center' zoom='self.map.zoom'>
-      <ui-gmap-marker ng-repeat="marker in self.map.markers" coords="marker.coords" options="marker.options" idkey='marker.id'>
-     </ui-gmap-marker>
+        <ui-gmap-marker ng-repeat="marker in self.map.markers" coords="marker.coords" options="marker.options" idkey='marker.id'>
+       </ui-gmap-marker>
     </ui-gmap-google-map>
+    <div class="pharmacies">
+      <ol>
+        <li ng-repeat = "pharmacy in self.pharmacies">
+            <div ng-bind-html="pharmacy.name"></div>
+            <div>adres: {{pharmacy.address}}</div>
+            <div>tel:{{pharmacy.phone_number}}</div>
+        </li>
+      </ol>
+
+    </div>
 
   </body>
 </html>
