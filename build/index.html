@@ -9,7 +9,7 @@
     {{district}}
     <form name="searchDistrict">
       <input type="search" placeholder="semt yaziniz" name="name" ng-model="district">
-      <input type="submit" value="Search" ng-click="search()">
+      <input type="submit" value="Search" ng-click="self.search(district)">
     </form>
     <div>
       {{self.district}}
@@ -18,7 +18,8 @@
       {{self.pharmacies}}
     </div>
     <ui-gmap-google-map center='self.map.center' zoom='self.map.zoom'>
-        hana
+      <ui-gmap-marker ng-repeat="marker in self.map.markers" coords="marker.coords" options="marker.options" idkey='marker.id'>
+     </ui-gmap-marker>
     </ui-gmap-google-map>
 
   </body>

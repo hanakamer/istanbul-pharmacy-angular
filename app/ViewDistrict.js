@@ -20,18 +20,47 @@ import 'angular-google-maps';
   function MainController($http, uiGmapGoogleMapApi) {
     let self = this;
 
-    self.map = { center: { latitude: 45, longitude:73 }, zoom: 8 };
+    self.map = {
+      center: { latitude: 41.1, longitude:29 },
+      zoom: 10,
+      markers: []
+    };
+    let createMarker = function(info) {
+      let marker = {
+       id: info.id,
+       coords: {
+         latitude: info.coordinates[0],
+         longitude: info.coordinates[1]
+       }
+     };
+     self.map.markers.push(marker)
+    }
+
+
+
 
     let onComplete = function(response){
-      self.district = response.data.name
-      self.pharmacies =response.data.pharmacies
+      self.district = response.data.name;
+      self.pharmacies =response.data.pharmacies;
+      self.map.markers = [];
+      for (let i in self.pharmacies) {
+        self.pharmacies[i].id = i;
+        createMarker(self.pharmacies[i])
+      }
     }
+
     let onError = function(reason){
       self.error = "error"
     }
-    self.district = "sisli"
 
-    $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" + self.district)
-          .then(onComplete)
+    self.district = "sisli"
+    self.search = function(district) {
+      $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" +district)
+            .then(onComplete)
+
+    }
+
+
+
   };
 })();
