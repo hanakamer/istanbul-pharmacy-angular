@@ -6,8 +6,13 @@
     <script src="./bundle.js"></script>
   </head>
   <body>
-    <div ng-controller="MainController">
-      {{message}}
+    {{district}}
+    <form name="searchDistrict">
+      <input type="search" name="name" ng-model="district">
+      <input type="submit" value="Search">
+    </form>
+    <div ng-controller="MainController as self">
+      {{self.city}}
     </div>
 
   </body>

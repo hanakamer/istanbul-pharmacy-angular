@@ -20,8 +20,8 @@ const common = {
  },
  module: {
    loaders: [{
-     test: /\.(css)$/i,
-     loader: "style!css"
+     test: /\.(css|less)$/i,
+     loader: "style!css!less"
     },
    { test: /\.(jpe?g|png|gif)$/i,
      loader:"file" },
