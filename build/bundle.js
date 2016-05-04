@@ -60535,6 +60535,8 @@
 	  function MainController($http, uiGmapGoogleMapApi) {
 	    var self = this;
 
+	    self.todaysDate = new Date();
+
 	    self.map = {
 	      center: { latitude: 41.1, longitude: 29 },
 	      zoom: 12
@@ -60556,6 +60558,13 @@
 	      self.map.markers.push(marker);
 	    };
 
+	    var isUpToDate = function isUpToDate(date) {
+	      if (date == self.todaysDate) {
+	        return true;
+	      }
+	      return false;
+	    };
+
 	    var addMarkers = function addMarkers() {
 	      self.map.markers = [];
 	      for (var i in self.pharmacies) {
@@ -60567,6 +60576,7 @@
 	    };
 
 	    var onComplete = function onComplete(response) {
+	      self.dataDate = response.data.date;
 	      self.district = response.data.name;
 	      self.pharmacies = response.data.pharmacies;
 	      addMarkers();
@@ -95427,7 +95437,7 @@
 	exports.i(__webpack_require__(23), "");
 
 	// module
-	exports.push([module.id, ".fl {\n  float: left;\n}\n.fr {\n  float: right;\n}\n.clear {\n  clear: both;\n}\n.bold {\n  font-weight: bold;\n}\n.header-title {\n  text-align: center;\n  font-weight: lighter;\n}\n.angular-google-map-container,\n.angular-google-map {\n  height: 300px;\n  width: 600px;\n  float: right;\n  margin: 0 15px;\n}\n.pharmacies {\n  float: left;\n  width: 40%;\n}\n.marker-labels {\n  font-weight: bold;\n}\n.search-container {\n  text-align: center;\n  margin: 30px auto;\n}\n.search-container input {\n  font-size: 34px;\n}\n.search-button {\n  background-color: white;\n  color: black;\n  border: 2px solid #4CAF50;\n  -webkit-transition-duration: 0.4s;\n  transition-duration: 0.4s;\n}\n.search-text {\n  width: 20%;\n}\n.search-button:hover {\n  background-color: #4CAF50;\n  color: white;\n}\n.pharm-title {\n  font-size: 20px;\n  font-weight: lighter;\n  margin-top: 10px;\n  margin-bottom: 5px;\n}\nli {\n  list-style: none;\n}\n.info-title {\n  font-weight: bold;\n  width: 20%;\n  display: inline-block;\n}\n.info-text {\n  width: 75%;\n  text-align: left;\n}\ninput {\n  border: none;\n  text-align: left;\n}\ninput:focus {\n  outline: none;\n}\ninput[type=\"search\"]::-webkit-search-decoration,\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-results-button,\ninput[type=\"search\"]::-webkit-search-results-decoration {\n  display: none;\n}\n", ""]);
+	exports.push([module.id, ".fl {\n  float: left;\n}\n.fr {\n  float: right;\n}\n.clear {\n  clear: both;\n}\n.bold {\n  font-weight: bold;\n}\n.center {\n  text-align: center;\n}\n.header-title {\n  text-align: center;\n  font-weight: lighter;\n}\n.update {\n  font-size: 12px;\n}\n.angular-google-map-container,\n.angular-google-map {\n  height: 300px;\n  width: 600px;\n  float: right;\n  margin: 0 15px;\n}\n.pharmacies {\n  float: left;\n  width: 40%;\n}\n.marker-labels {\n  font-weight: bold;\n}\n.search-container {\n  text-align: center;\n  margin: 30px auto;\n}\n.search-container input {\n  font-size: 34px;\n}\n.search-button {\n  background-color: white;\n  color: black;\n  border: 2px solid #4CAF50;\n  -webkit-transition-duration: 0.4s;\n  transition-duration: 0.4s;\n}\n.search-text {\n  width: 20%;\n}\n.search-button:hover {\n  background-color: #4CAF50;\n  color: white;\n}\n.pharm-title {\n  font-size: 20px;\n  font-weight: lighter;\n  margin-top: 10px;\n  margin-bottom: 5px;\n}\nli {\n  list-style: none;\n}\n.info-title {\n  font-weight: bold;\n  width: 20%;\n  display: inline-block;\n}\n.info-text {\n  width: 75%;\n  text-align: left;\n}\ninput {\n  border: none;\n  text-align: left;\n}\ninput:focus {\n  outline: none;\n}\ninput[type=\"search\"]::-webkit-search-decoration,\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-results-button,\ninput[type=\"search\"]::-webkit-search-results-decoration {\n  display: none;\n}\n", ""]);
 
 	// exports
 

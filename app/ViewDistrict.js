@@ -23,6 +23,8 @@ import 'angular-google-maps';
   function MainController($http, uiGmapGoogleMapApi) {
     let self = this;
 
+    self.todaysDate = new Date();
+
     self.map = {
       center: { latitude: 41.1, longitude:29 },
       zoom: 12,
@@ -44,6 +46,13 @@ import 'angular-google-maps';
      self.map.markers.push(marker);
     }
 
+    let isUpToDate = function(date) {
+      if (date == self.todaysDate) {
+        return true;
+      }
+      return false
+    }
+
     let addMarkers = function() {
       self.map.markers = [];
       for (let i in self.pharmacies) {
@@ -55,6 +64,7 @@ import 'angular-google-maps';
     }
 
     let onComplete = function(response){
+      self.dataDate = response.data.date;
       self.district = response.data.name;
       self.pharmacies = response.data.pharmacies;
       addMarkers();

@@ -11,9 +11,15 @@
 .bold {
   font-weight: bold;
 }
+.center {
+  text-align: center;
+}
 .header-title {
   text-align: center;
   font-weight: lighter;
+}
+.update {
+  font-size: 12px;
 }
 .angular-google-map-container, .angular-google-map {
   height: 300px;
