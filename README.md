@@ -1,6 +1,6 @@
-# istanbul-pharmacies
+# istanbul pharmacies-on-duty
 
-SPA which you can search for pharmacies in Istanbul, made with angular.
+SPA which you can search for pharmacies on duty in Istanbul, made with angular.
 
 ##[demo](http://hanakamer.github.io/istanbul-pharmacy-angular/build/)
 
