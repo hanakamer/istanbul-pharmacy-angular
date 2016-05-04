@@ -11,8 +11,12 @@
 .bold {
   font-weight: bold;
 }
+.header-title {
+  text-align: center;
+  font-weight: lighter;
+}
 .angular-google-map-container, .angular-google-map {
-  height: 400px;
+  height: 300px;
   width: 600px;
   float: right;
   margin:0 15px;
@@ -48,7 +52,7 @@
 }
 .pharm-title {
   font-size: 20px;
-  font-weight: bolder;
+  font-weight: lighter;;
   margin-top: 10px;
   margin-bottom: 5px;
 }
