@@ -33,7 +33,7 @@ import 'angular-google-maps';
 
     self.map = {
       center: { latitude: 41.1, longitude:29 },
-      zoom: 13,
+      zoom: 12,
     };
     let createMarker = function(info) {
       let marker = {
@@ -42,7 +42,12 @@ import 'angular-google-maps';
          latitude: info.coordinates[0],
          longitude: info.coordinates[1]
        },
-       markers: []
+       options: {
+         title: info.name,
+         labelContent: parseInt(info.id)+1,
+         labelAnchor: "0 53",
+         labelClass: "marker-labels"
+       }
      };
      self.map.markers.push(marker);
     }
@@ -71,18 +76,8 @@ import 'angular-google-maps';
     self.district = "sisli"
 
     self.search = function(district) {
-      $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" +district,
-    {
-      transformResponse: function(rawInput) {
-        let output = decodeURIComponent(rawInput);
-        console.log(output)
-        return JSON.parse(output); }
-    })
+      $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" +district)
     .then(onComplete)
-    .catch(function(e) {
-      console.log(e)
-    })
-
 
     }
   };

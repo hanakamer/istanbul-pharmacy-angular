@@ -6,23 +6,22 @@
     <script src="./bundle.js"></script>
   </head>
   <body  ng-controller="MainController as self">
-    {{district}}
-    <form name="searchDistrict">
-      <input type="search" placeholder="semt yaziniz" name="name" ng-model="district">
-      <input type="submit" value="Search" ng-click="self.search(district)">
-    </form>
-    <div>
-      {{self.district}}
+    <div class="search-container">
+      <form name="searchDistrict">
+        <input class="search-text" type="search" placeholder=" SEMT" name="name" ng-model="district">
+        <input class="search-button" type="submit" value="ARA" ng-click="self.search(district)">
+      </form>
     </div>
     <ui-gmap-google-map center='self.map.center' zoom='self.map.zoom'>
-        <ui-gmap-marker ng-repeat="marker in self.map.markers" coords="marker.coords" options="marker.options" idkey='marker.id'>
+        <ui-gmap-marker ng-repeat="marker in self.map.markers" coords="marker.coords" options="marker.options" idkey='marker.id' class="marker">
        </ui-gmap-marker>
     </ui-gmap-google-map>
     <div class="pharmacies">
       <ol>
         <li ng-repeat = "pharmacy in self.pharmacies">
-            <div ng-bind-html="pharmacy.name"></div>
+            <div ng-bind-html="pharmacy.name" class="pharm-title"></div>
             <div>adres: {{pharmacy.address}}</div>
+            <div>adres tarifi: {{pharmacy.directions}}</div>
             <div>tel:{{pharmacy.phone_number}}</div>
         </li>
       </ol>
