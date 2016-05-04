@@ -60530,15 +60530,6 @@
 	      libraries: 'weather,geometry,visualization'
 	    });
 	  }]).controller("MainController", MainController);
-	  //     .filter('decodeURIComponent', function() {
-	  //     return function(input) {
-	  //      console.log('apply filter to: ', input);
-	  //      var output = window.decodeURIComponent(input);
-	  //      console.log('output: ', output);
-	  //      return output;
-	  //  }
-	  //
-	  //   });
 	  MainController.$inject = ["$http"];
 
 	  function MainController($http, uiGmapGoogleMapApi) {
