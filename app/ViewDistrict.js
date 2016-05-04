@@ -6,6 +6,7 @@ import 'angular-simple-logger';
 import 'angular-google-maps';
 
 
+
 (function() {
   angular
       .module("pharmApp",  ['nemLogging','uiGmapgoogle-maps', 'ngSanitize'])
@@ -44,7 +45,7 @@ import 'angular-google-maps';
        },
        options: {
          title: info.name,
-         labelContent: parseInt(info.id)+1,
+         labelContent: info.id,
          labelAnchor: "0 53",
          labelClass: "marker-labels"
        }
@@ -55,7 +56,7 @@ import 'angular-google-maps';
     let addMarkers = function() {
       self.map.markers = [];
       for (let i in self.pharmacies) {
-        self.pharmacies[i].id = i;
+        self.pharmacies[i].id = parseInt(i) +1;
         createMarker(self.pharmacies[i])
       }
       self.map.center.latitude = self.pharmacies[0].coordinates[0]

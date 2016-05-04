@@ -1,12 +1,26 @@
-
+@import '../node_modules/angular-material/angular-material.css';
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+.bold {
+  font-weight: bold;
+}
 .angular-google-map-container, .angular-google-map {
   height: 400px;
   width: 600px;
-  float: left;
-}
-.pharmacies {
   float: right;
-  width: 50%;
+  margin:0 15px;
+}
+
+.pharmacies {
+  float: left;
+  width: 40%;
 }
 .marker-labels{
   font-weight: bold;
@@ -14,16 +28,41 @@
 .search-container{
   text-align: center;
   margin:30px auto;
-  border: 1px solid black;
 }
 .search-container input {
-  font-size: 24px;
+  font-size: 34px;
 }
 .search-button {
-  background: transparent;
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+.search-text {
+  width: 20%;
+}
+.search-button:hover {
+    background-color: #4CAF50;
+    color: white;
 }
 .pharm-title {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+li {
+  list-style: none;
+}
+.info-title {
   font-weight: bold;
+  width: 20%;
+  display: inline-block;
+}
+.info-text {
+  width: 75%;
+  text-align: left;
 }
 input {
   border: none;
