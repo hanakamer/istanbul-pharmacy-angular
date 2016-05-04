@@ -6,11 +6,11 @@
     <script src="./bundle.js"></script>
   </head>
   <body  ng-controller="MainController as self">
-    <h2 class="header-title">İSTANBUL ECZANELERİ</h2>
+    <h2 class="header-title">İSTANBUL'DAKİ NÖBETÇİ ECZANELER</h2>
     <div class="search-container">
-      <form name="searchDistrict">
-        <input class="search-text" type="search" placeholder="SEMT" name="name" ng-model="district">
-        <input class="search-button" type="submit" value="ARA" ng-click="self.search(district)">
+      <form name="searchDistrict" ng-submit="self.search(district)">
+        <input class="search-text" type="search" required placeholder="SEMT" name="name" ng-model="district">
+        <input class="search-button" type="submit" value="ARA">
       </form>
     </div>
     <div class="map-container">

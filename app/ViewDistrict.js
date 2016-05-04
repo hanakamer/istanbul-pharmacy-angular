@@ -18,15 +18,6 @@ import 'angular-google-maps';
       });
     }])
       .controller("MainController", MainController )
-  //     .filter('decodeURIComponent', function() {
-  //     return function(input) {
-  //      console.log('apply filter to: ', input);
-  //      var output = window.decodeURIComponent(input);
-  //      console.log('output: ', output);
-  //      return output;
-  //  }
-   //
-  //   });
   MainController.$inject = [ "$http"];
 
   function MainController($http, uiGmapGoogleMapApi) {
@@ -62,7 +53,6 @@ import 'angular-google-maps';
       self.map.center.latitude = self.pharmacies[0].coordinates[0]
       self.map.center.longitude = self.pharmacies[0].coordinates[1]
     }
-
 
     let onComplete = function(response){
       self.district = response.data.name;
