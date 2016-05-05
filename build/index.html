@@ -9,8 +9,8 @@
     <p class="center" ng-bind="self.todaysDate | date:'dd-MM-yyyy'"></p>
     <h2 class="header-title">İSTANBUL'DAKİ NÖBETÇİ ECZANELER</h2>
     <div class="search-container">
-      <form name="searchDistrict" ng-submit="self.search(district)">
-        <input class="search-text" type="search" required placeholder="SEMT" name="name" ng-model="district">
+      <form name="searchDistrict" ng-submit="self.search(self.slug)">
+        <input class="search-text" type="search" required placeholder="SEMT" name="name" ng-model="self.slug">
         <input class="search-button" type="submit" value="ARA">
       </form>
     </div>
