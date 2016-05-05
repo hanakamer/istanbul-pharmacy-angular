@@ -19,7 +19,9 @@ import 'angular-google-maps';
     }])
       .controller("MainController", MainController )
 
-  function MainController($http, uiGmapGoogleMapApi, $log) {
+  function MainController(
+    $http, uiGmapGoogleMapApi, $log,
+    $anchorScroll, $location) {
     let self = this;
 
     self.map = {
@@ -58,6 +60,9 @@ import 'angular-google-maps';
       }
       self.map.center.latitude = self.pharmacies[0].coordinates[0]
       self.map.center.longitude = self.pharmacies[0].coordinates[1]
+
+      $location.hash("pharmacyList");
+      $anchorScroll()
     }
 
     let onComplete = function(response){
