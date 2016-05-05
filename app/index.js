@@ -60,7 +60,7 @@ import {pharmacyOnDuty} from '../app/ViewDistrict'
 
 
     let onError = function(reason){
-      self.error = "*Böyle bir semt yok."
+      self.error = "*Böyle bir ilçe yok."
     }
 
     self.search = function(district) {
