@@ -41,6 +41,7 @@
     "angular-route": "^1.5.5",
     "angular-sanitize": "^1.5.5",
     "angular-simple-logger": "^0.1.7",
-    "lodash": "^4.11.2"
+    "lodash": "^4.11.2",
+    "slug": "^0.9.1"
   }
 }

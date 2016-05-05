@@ -1,8 +1,9 @@
 import {app} from '../app/app'
+import slug from 'slug'
 
 export let pharmacyOnDuty = function($http){
     let getPharmacies = function(district){
-      return $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" + district)
+      return $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" + slug(district))
                   .then(function(response){
                     return response.data;
                   })

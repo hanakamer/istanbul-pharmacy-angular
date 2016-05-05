@@ -60,9 +60,9 @@
 
 	__webpack_require__(16);
 
-	var _app = __webpack_require__(18);
+	var _app = __webpack_require__(17);
 
-	var _ViewDistrict = __webpack_require__(17);
+	var _ViewDistrict = __webpack_require__(18);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -117,7 +117,7 @@
 	  };
 
 	  var onError = function onError(reason) {
-	    self.error = "*Böyle bir semt yok.";
+	    self.error = "*Böyle bir ilçe yok.";
 	  };
 
 	  self.search = function (district) {
@@ -64630,6 +64630,24 @@
 
 /***/ },
 /* 17 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var app = exports.app = angular.module("pharmApp", ['nemLogging', 'uiGmapgoogle-maps', 'ngSanitize']);
+	app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
+	  GoogleMapApi.configure({
+	    //    key: 'your api key',
+	    // v: '3.20',
+	    libraries: 'weather,geometry,visualization'
+	  });
+	}]);
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -64639,7 +64657,7 @@
 	});
 	exports.pharmacyOnDuty = undefined;
 
-	var _app = __webpack_require__(18);
+	var _app = __webpack_require__(17);
 
 	var pharmacyOnDuty = exports.pharmacyOnDuty = function pharmacyOnDuty($http) {
 	  var getPharmacies = function getPharmacies(district) {
@@ -64656,24 +64674,6 @@
 	//just giving a ref to the module, not creating a new one
 	var _module = angular.module("pharmApp");
 	_module.factory("pharmacyOnDuty", pharmacyOnDuty);
-
-/***/ },
-/* 18 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var app = exports.app = angular.module("pharmApp", ['nemLogging', 'uiGmapgoogle-maps', 'ngSanitize']);
-	app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
-	  GoogleMapApi.configure({
-	    //    key: 'your api key',
-	    // v: '3.20',
-	    libraries: 'weather,geometry,visualization'
-	  });
-	}]);
 
 /***/ }
 /******/ ]);

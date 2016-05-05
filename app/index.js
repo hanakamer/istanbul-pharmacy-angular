@@ -71,7 +71,7 @@ import {pharmacyOnDuty} from '../app/ViewDistrict'
   };
 
   self.todaysDate = new Date();
-  self.slug = "kartal"
+  self.district = "kartal"
 };
 
     app.controller("MainController", MainController )
