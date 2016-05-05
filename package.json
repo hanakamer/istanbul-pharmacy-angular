@@ -41,7 +41,6 @@
     "angular-route": "^1.5.5",
     "angular-sanitize": "^1.5.5",
     "angular-simple-logger": "^0.1.7",
-    "lodash": "^4.11.2",
-    "underscore": "^1.8.3"
+    "lodash": "^4.11.2"
   }
 }

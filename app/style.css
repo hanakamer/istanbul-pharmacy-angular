@@ -28,6 +28,11 @@
   margin:0 15px;
 }
 
+.error {
+  color: red;
+  font-weight: lighter;;
+  font-size: 12px;
+}
 .pharmacies {
   float: left;
   width: 40%;
