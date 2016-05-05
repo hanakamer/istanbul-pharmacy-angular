@@ -1,0 +1,30 @@
+<div class="pharmacies">
+  <ul>
+    <li class='update' ng-show = 'self.dataDate.length'>Son Güncellenme Tarihi:{{self.dataDate}}</li>
+    <li ng-repeat = "pharmacy in self.pharmacies">
+        <div class="pharm-title"><span> {{pharmacy.id}}</span>.{{pharmacy.name}}</div>
+        <div>
+          <p>
+            <span class="info-title fl">Adres</span>
+            <span class="info-text fr"><span class="fl bold">:</span>{{pharmacy.address}}</span>
+         </p>
+       </div>
+       <div class="clear"></div>
+        <div ng-show="pharmacy.directions.length">
+          <p>
+            <span class="info-title fl">Adres tarifi</span>
+            <span class="info-text fr"><span class="fl bold">:</span><span ng-if=""></span>{{pharmacy.directions}}</span>
+          </p>
+        </div>
+        <div class="clear"></div>
+        <div>
+          <p>
+            <span class="info-title fl">Tel</span>
+            <span class="info-text fr"><span class="fl bold">:</span>{{pharmacy.phone_number}}</span>
+          </p>
+        </div>
+        <div class="clear"></div>
+    </li>
+  </ul>
+
+</div>
