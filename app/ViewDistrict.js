@@ -18,12 +18,9 @@ import 'angular-google-maps';
       });
     }])
       .controller("MainController", MainController )
-  MainController.$inject = [ "$http"];
 
-  function MainController($http, uiGmapGoogleMapApi) {
+  function MainController($http, uiGmapGoogleMapApi, $interval, $log) {
     let self = this;
-
-    self.todaysDate = new Date();
 
     self.map = {
       center: { latitude: 41.1, longitude:29 },
@@ -64,8 +61,10 @@ import 'angular-google-maps';
     }
 
     let onComplete = function(response){
+      console.log(response.data)
       self.dataDate = response.data.date;
       self.district = response.data.name;
+      self.slug = response.data.slug;
       self.pharmacies = response.data.pharmacies;
       addMarkers();
     }
@@ -74,12 +73,32 @@ import 'angular-google-maps';
       self.error = "error"
     }
 
-    self.district = "sisli"
+    let decrementCountdown = function() {
+      self.countdown -= 1;
+      if(self.countdown < 1){
+        self.search(self.slug);
+      }
+    };
+
+    let countdownInterval = null;
+
+    let startCountdown = function () {
+      countdownInterval = $interval(decrementCountdown, 1000, self.countdown);
+    }
 
     self.search = function(district) {
+      $log.info("searching for " + district)
       $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" +district)
     .then(onComplete)
 
+    if(countdownInterval) {
+      $interval.cancel(countdownInterval)
     }
   };
+
+  self.countdown = 5;
+  self.todaysDate = new Date();
+  self.slug = "kartal"
+  startCountdown();
+};
 })();
