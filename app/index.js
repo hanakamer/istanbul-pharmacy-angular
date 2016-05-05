@@ -5,21 +5,10 @@ import 'angular-sanitize';
 import 'lodash';
 import 'angular-simple-logger';
 import 'angular-google-maps';
+import {app} from '../app/app'
+import {pharmacyOnDuty} from '../app/ViewDistrict'
 
-(function() {
-
-  let app = angular.module("pharmApp",  ['nemLogging','uiGmapgoogle-maps', 'ngSanitize']);
-
-  app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
-    GoogleMapApi.configure({
-    //    key: 'your api key',
-    // v: '3.20',
-    libraries: 'weather,geometry,visualization'
-  });
-}]);
-
-
-  let MainController = function($http, uiGmapGoogleMapApi, $log) {
+  let MainController = function( pharmacyOnDuty, $http, uiGmapGoogleMapApi, $log) {
     let self = this;
 
     self.map = {
@@ -60,11 +49,11 @@ import 'angular-google-maps';
       self.map.center.longitude = self.pharmacies[0].coordinates[1]
     }
 
-    let onComplete = function(response){
-      self.dataDate = response.data.date;
-      self.district = response.data.name;
-      self.slug = response.data.slug;
-      self.pharmacies = response.data.pharmacies;
+    let onComplete = function(data){
+      self.dataDate = data.date;
+      self.district = data.name;
+      self.slug = data.slug;
+      self.pharmacies = data.pharmacies;
       self.error = null;
       addMarkers();
     }
@@ -75,9 +64,9 @@ import 'angular-google-maps';
     }
 
     self.search = function(district) {
+      pharmacyOnDuty.getPharmacies(district)
+                    .then(onComplete, onError)
       $log.info("searching for " + district)
-      $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" +district)
-    .then(onComplete, onError)
 
   };
 
@@ -86,4 +75,3 @@ import 'angular-google-maps';
 };
 
     app.controller("MainController", MainController )
-})();

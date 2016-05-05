@@ -60,85 +60,76 @@
 
 	__webpack_require__(16);
 
+	var _app = __webpack_require__(18);
+
+	var _ViewDistrict = __webpack_require__(17);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(function () {
+	var MainController = function MainController(pharmacyOnDuty, $http, uiGmapGoogleMapApi, $log) {
+	  var self = this;
 
-	  var app = _angular2.default.module("pharmApp", ['nemLogging', 'uiGmapgoogle-maps', 'ngSanitize']);
-
-	  app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
-	    GoogleMapApi.configure({
-	      //    key: 'your api key',
-	      // v: '3.20',
-	      libraries: 'weather,geometry,visualization'
-	    });
-	  }]);
-
-	  var MainController = function MainController($http, uiGmapGoogleMapApi, $log) {
-	    var self = this;
-
-	    self.map = {
-	      center: { latitude: 41.1, longitude: 29 },
-	      zoom: 12
-	    };
-	    var createMarker = function createMarker(info) {
-	      var marker = {
-	        id: info.id,
-	        coords: {
-	          latitude: info.coordinates[0],
-	          longitude: info.coordinates[1]
-	        },
-	        options: {
-	          title: info.name,
-	          labelContent: info.id,
-	          labelAnchor: "0 53",
-	          labelClass: "marker-labels"
-	        }
-	      };
-	      self.map.markers.push(marker);
-	    };
-
-	    var isUpToDate = function isUpToDate(date) {
-	      if (date == self.todaysDate) {
-	        return true;
+	  self.map = {
+	    center: { latitude: 41.1, longitude: 29 },
+	    zoom: 12
+	  };
+	  var createMarker = function createMarker(info) {
+	    var marker = {
+	      id: info.id,
+	      coords: {
+	        latitude: info.coordinates[0],
+	        longitude: info.coordinates[1]
+	      },
+	      options: {
+	        title: info.name,
+	        labelContent: info.id,
+	        labelAnchor: "0 53",
+	        labelClass: "marker-labels"
 	      }
-	      return false;
 	    };
-
-	    var addMarkers = function addMarkers() {
-	      self.map.markers = [];
-	      for (var i in self.pharmacies) {
-	        self.pharmacies[i].id = parseInt(i) + 1;
-	        createMarker(self.pharmacies[i]);
-	      }
-	      self.map.center.latitude = self.pharmacies[0].coordinates[0];
-	      self.map.center.longitude = self.pharmacies[0].coordinates[1];
-	    };
-
-	    var onComplete = function onComplete(response) {
-	      self.dataDate = response.data.date;
-	      self.district = response.data.name;
-	      self.slug = response.data.slug;
-	      self.pharmacies = response.data.pharmacies;
-	      self.error = null;
-	      addMarkers();
-	    };
-
-	    var onError = function onError(reason) {
-	      self.error = "*Böyle bir semt yok.";
-	    };
-
-	    self.search = function (district) {
-	      $log.info("searching for " + district);
-	      $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" + district).then(onComplete, onError);
-	    };
-
-	    self.todaysDate = new Date();
-	    self.slug = "kartal";
+	    self.map.markers.push(marker);
 	  };
 
-	  app.controller("MainController", MainController);
-	})();
+	  var isUpToDate = function isUpToDate(date) {
+	    if (date == self.todaysDate) {
+	      return true;
+	    }
+	    return false;
+	  };
+
+	  var addMarkers = function addMarkers() {
+	    self.map.markers = [];
+	    for (var i in self.pharmacies) {
+	      self.pharmacies[i].id = parseInt(i) + 1;
+	      createMarker(self.pharmacies[i]);
+	    }
+	    self.map.center.latitude = self.pharmacies[0].coordinates[0];
+	    self.map.center.longitude = self.pharmacies[0].coordinates[1];
+	  };
+
+	  var onComplete = function onComplete(data) {
+	    self.dataDate = data.date;
+	    self.district = data.name;
+	    self.slug = data.slug;
+	    self.pharmacies = data.pharmacies;
+	    self.error = null;
+	    addMarkers();
+	  };
+
+	  var onError = function onError(reason) {
+	    self.error = "*Böyle bir semt yok.";
+	  };
+
+	  self.search = function (district) {
+	    pharmacyOnDuty.getPharmacies(district).then(onComplete, onError);
+	    $log.info("searching for " + district);
+	  };
+
+	  self.todaysDate = new Date();
+	  self.slug = "kartal";
+	};
+
+	_app.app.controller("MainController", MainController);
 
 /***/ },
 /* 1 */
@@ -64636,6 +64627,53 @@
 	  };
 	}]);
 	}( window,angular));
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.pharmacyOnDuty = undefined;
+
+	var _app = __webpack_require__(18);
+
+	var pharmacyOnDuty = exports.pharmacyOnDuty = function pharmacyOnDuty($http) {
+	  var getPharmacies = function getPharmacies(district) {
+	    return $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" + district).then(function (response) {
+	      return response.data;
+	    });
+	  };
+
+	  return {
+	    getPharmacies: getPharmacies
+	  };
+	};
+
+	//just giving a ref to the module, not creating a new one
+	var _module = angular.module("pharmApp");
+	_module.factory("pharmacyOnDuty", pharmacyOnDuty);
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var app = exports.app = angular.module("pharmApp", ['nemLogging', 'uiGmapgoogle-maps', 'ngSanitize']);
+	app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
+	  GoogleMapApi.configure({
+	    //    key: 'your api key',
+	    // v: '3.20',
+	    libraries: 'weather,geometry,visualization'
+	  });
+	}]);
 
 /***/ }
 /******/ ]);
