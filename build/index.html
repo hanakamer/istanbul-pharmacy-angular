@@ -5,24 +5,14 @@
     <title></title>
     <script src="./bundle.js"></script>
   </head>
-  <body  ng-controller="MainController as self">
-    <p class="center" ng-bind="self.todaysDate | date:'dd-MM-yyyy'"></p>
+  <body>
+    <!-- <p class="center" ng-bind="self.todaysDate | date:'dd-MM-yyyy'"></p> -->
     <h2 class="header-title">İSTANBUL'DAKİ NÖBETÇİ ECZANELER</h2>
-    <div class="search-container">
-
-      <form name="searchDistrict" ng-submit="self.search(self.district)">
-        <input class="search-text" type="search" required placeholder="SEMT" name="name" ng-model="self.district">
-        <input class="search-button" type="submit" value="ARA">
-      </form>
-      <div class="error" ng-show= "self.error" ng-bind="self.error"></div>
-    </div>
-    <div class="map-container">
-      <ui-gmap-google-map center='self.map.center' zoom='self.map.zoom'>
-          <ui-gmap-marker ng-repeat="marker in self.map.markers" coords="marker.coords" options="marker.options" idkey='marker.id' class="marker">
-         </ui-gmap-marker>
-      </ui-gmap-google-map>
+    
+    <div ng-view>
 
     </div>
-    <div ng-include src="'components/pharmacies.html'"></div>
+
   </body>
+
 </html>

@@ -1,3 +1,10 @@
+<div class="search-container">
+  <form name="searchDistrict" ng-submit="self.search(self.district)">
+    <input class="search-text" type="search" required placeholder="SEMT" name="name" ng-model="self.district">
+    <input class="search-button" type="submit" value="ARA">
+  </form>
+  <div class="error" ng-show= "self.error" ng-bind="self.error"></div>
+</div>
 <div class="pharmacies">
   <ul>
     <li class='update' ng-show = 'self.dataDate.length'>Son Güncellenme Tarihi:{{self.dataDate}}</li>
@@ -27,4 +34,10 @@
     </li>
   </ul>
 
+</div>
+<div class="map-container">
+  <ui-gmap-google-map center='self.map.center' zoom='self.map.zoom'>
+      <ui-gmap-marker ng-repeat="marker in self.map.markers" coords="marker.coords" options="marker.options" idkey='marker.id' class="marker">
+     </ui-gmap-marker>
+  </ui-gmap-google-map>
 </div>

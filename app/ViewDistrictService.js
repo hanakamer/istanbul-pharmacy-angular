@@ -3,7 +3,7 @@ import slug from 'slug'
 
 export let pharmacyOnDuty = function($http){
     let getPharmacies = function(district){
-      return $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" + slug(district))
+      return $http.get("http://pharmacy.emre.sh/api/v1/istanbul/" + slug(district.toLowerCase()))
                   .then(function(response){
                     return response.data;
                   })

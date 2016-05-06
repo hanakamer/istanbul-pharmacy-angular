@@ -1,0 +1,44 @@
+<div class="search-container">
+  <form name="searchDistrict" ng-submit="self.search(self.district)">
+    <input class="search-text" type="search" required placeholder="SEMT" name="name" ng-model="self.district">
+    <input class="search-button" type="submit" value="ARA">
+  </form>
+  <div class="error" ng-show= "self.error" ng-bind="self.error"></div>
+</div>
+
+  <div class="pharmacies">
+    <ul>
+      <li class='update' ng-show = 'self.dataDate.length'>Son Güncellenme Tarihi:{{self.dataDate}}</li>
+      <li ng-repeat = "pharmacy in self.pharmacies">
+          <div class="pharm-title"><span> {{pharmacy.id}}</span>.{{pharmacy.name}}</div>
+          <div>
+            <p>
+              <span class="info-title fl">Adres</span>
+              <span class="info-text fr"><span class="fl bold">:</span>{{pharmacy.address}}</span>
+           </p>
+         </div>
+         <div class="clear"></div>
+          <div ng-show="pharmacy.directions.length">
+            <p>
+              <span class="info-title fl">Adres tarifi</span>
+              <span class="info-text fr"><span class="fl bold">:</span><span></span>{{pharmacy.directions}}</span>
+            </p>
+          </div>
+          <div class="clear"></div>
+          <div>
+            <p>
+              <span class="info-title fl">Tel</span>
+              <span class="info-text fr"><span class="fl bold">:</span>{{pharmacy.phone_number}}</span>
+            </p>
+          </div>
+          <div class="clear"></div>
+      </li>
+    </ul>
+
+  </div>
+  <div class="map-container">
+    <ui-gmap-google-map center='self.map.center' zoom='self.map.zoom'>
+        <ui-gmap-marker ng-repeat="marker in self.map.markers" coords="marker.coords" options="marker.options" idkey='marker.id' class="marker">
+       </ui-gmap-marker>
+    </ui-gmap-google-map>
+  </div>
