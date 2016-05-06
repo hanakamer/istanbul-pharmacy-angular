@@ -1,12 +1,8 @@
-<div class="search-container">
-  <form name="searchDistrict" ng-submit="self.search(self.district)">
-    <input class="search-text" type="search" required placeholder="SEMT" name="name" ng-model="self.district">
-    <input class="search-button" type="submit" value="ARA">
-  </form>
-  <div class="error" ng-show= "self.error" ng-bind="self.error"></div>
-</div>
+
 <div class="pharmacies">
+
   <ul>
+    <li>  <a href="#main">ARAMA SAYFASINA GERI DON</a> </li>
     <li class='update' ng-show = 'self.dataDate.length'>Son Güncellenme Tarihi:{{self.dataDate}}</li>
     <li ng-repeat = "pharmacy in self.pharmacies">
         <div class="pharm-title"><span> {{pharmacy.id}}</span>.{{pharmacy.name}}</div>

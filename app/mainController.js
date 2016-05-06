@@ -51,6 +51,7 @@ export let MainController = function( pharmacyOnDuty, $http,
     self.pharmacies = data.pharmacies;
     self.error = null;
     addMarkers();
+    $location.path("/ilce/"+self. district)
   }
 
 
@@ -59,7 +60,6 @@ export let MainController = function( pharmacyOnDuty, $http,
   }
 
   self.search = function(district) {
-    $location.path("/ilce/"+ district)
     pharmacyOnDuty.getPharmacies(district)
                   .then(onComplete, onError)
     $log.info("searching for " + district)
